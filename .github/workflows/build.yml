@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Master Build
 
 # Controls when the action will run. Triggers the workflow on push or pull request
@@ -10,16 +8,21 @@ on:
   pull_request:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@main
-    - uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '3.1.x'
-    - run: dotnet build Taika/Taika.md.sln
+      - name: Artifact Caching
+        uses: actions/cache@v2.1.1
+        with:
+          path: /cache
+          key: var
+          
+      - uses: actions/checkout@main
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+      - run: dotnet build Taika/Taika.md.sln
+
