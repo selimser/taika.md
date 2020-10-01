@@ -1,37 +1,76 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Taika</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+﻿ <!-- Sidebar - Brand -->
+<NavLink href="/">
+    <div class="sidebar-brand d-flex align-items-center justify-content-center">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-magic"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">T&auml;ika</div>
+    </div>
+</NavLink>
+
+<hr class="sidebar-divider my-0">
+
+
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <i class="fas fa-fw fa-satellite"></i>
+        <span>First Item</span>
+    </a>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <NavLink href="ItemLink">
+                <span class="collapse-item">Sub Item Content</span>
+            </NavLink>
+        </div>
+    </div>
+</li>
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-globe-europe"></i>
+        <span>Section</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <NavLink href="Link1">
+                <span class="collapse-item">Item 1</span>
+            </NavLink>
+            <NavLink href="Link2">
+                <span class="collapse-item">Item 2</span>
+            </NavLink>
+            <NavLink href="Link3">
+                <span class="collapse-item">Item 3</span>
+            </NavLink>
+        </div>
+    </div>
+</li>
+<li class="nav-item">
+    <NavLink class="nav-link" href="StandAloneLink">
+        <i class="fas fa-fw fa-square-root-alt"></i>
+        <span>Single Item</span>
+    </NavLink>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+<!-- Heading -->
+<div class="sidebar-heading">
+    Misc
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
-</div>
+<li class="nav-item">
+    <a class="nav-link" href="target.html">
+        <i class="fas fa-fw fa-code"></i>
+        <span>Item 4</span>
+    </a>
+</li>
 
-@code {
-    private bool collapseNavMenu = true;
+<li class="nav-item">
+    <a class="nav-link" href="target.html">
+        <i class="fab fa-fw fa-github"></i>
+        <span>Item 5</span>
+    </a>
+</li>
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+
