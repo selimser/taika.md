@@ -1,0 +1,30 @@
+﻿@inherits LayoutComponentBase
+
+
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <NavMenu />
+    </ul>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <div class="container-fluid">
+                @Body
+            </div>
+        </div>
+
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>
+                        Powered by
+                        <a href="https://github.com/selimser/taika.md" target="_blank">
+                            <i class="fas fa-magic"></i> T&auml;ika.md
+                        </a>
+                    </span>
+                    @*<span>Check out the source code on <i class="fab fa-github" /> Github!</span>*@
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
