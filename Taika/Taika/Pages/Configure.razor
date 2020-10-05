@@ -1,0 +1,36 @@
+﻿@page "/Configure"
+
+@using Taika.Pages.Settings
+@using Taika.Shared
+
+<TopBar Title="Configure Taika-" />
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="generalSettingsTab" data-toggle="tab" href="#generalSettings" role="tab" aria-controls="generalSettings" aria-selected="true">
+            General
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="targetsTab" data-toggle="tab" href="#targets" role="tab" aria-controls="targets" aria-selected="false">
+            Targets
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="cacheTab" data-toggle="tab" href="#cache" role="tab" aria-controls="cache" aria-selected="false">
+            Cache Management
+        </a>
+    </li>
+</ul>
+<div class="tab-content configureTabs" id="myTabContent">
+    <div class="tab-pane fade show active" id="generalSettings" role="tabpanel" aria-labelledby="generalSettingsTab">
+        <General />
+    </div>
+    <div class="tab-pane fade" id="targets" role="tabpanel" aria-labelledby="targetsTab">
+        <Targets />
+    </div>
+    <div class="tab-pane fade" id="cache" role="tabpanel" aria-labelledby="cacheTab">
+        <Caches />
+    </div>
+</div>

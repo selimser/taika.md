@@ -4257,6 +4257,10 @@ input[type="button"].btn-block {
     border-bottom: 1px solid #dddfeb;
 }
 
+    .nav-tabs a {
+        color: rgba(128, 147, 163, 0.95);
+    }
+
     .nav-tabs .nav-item {
         margin-bottom: -1px;
     }
@@ -4317,6 +4321,10 @@ input[type="button"].btn-block {
 
 .tab-content > .active {
     display: block;
+}
+
+.tab-content a {
+    color: black;
 }
 
 .navbar {
@@ -12172,4 +12180,18 @@ footer.sticky-footer {
 
 body.sidebar-toggled footer.sticky-footer {
     width: 100%;
+}
+
+.configureButtonTop {
+    color: rgba(47, 47, 47, 0.80);
+}
+
+    .configureButtonTop:hover {
+        text-decoration: none;
+        color: rgba(130, 130, 130, 1);
+        background: rgba(0, 0, 0, 0);
+    }
+
+.configureTabs {
+    color: rgba(30, 30, 30, 0.9);
 }
