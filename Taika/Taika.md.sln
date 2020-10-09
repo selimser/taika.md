@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.Repository", "Taika.R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.Abstractions", "Taika.Abstractions\Taika.Abstractions.csproj", "{09784B8D-972C-41E7-8ED9-C9C60F7BED9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taika.Core", "Taika.Core\Taika.Core.csproj", "{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.Core", "Taika.Core\Taika.Core.csproj", "{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
