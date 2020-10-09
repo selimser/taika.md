@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.Abstractions", "Taika
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.Core", "Taika.Core\Taika.Core.csproj", "{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Taika.Database", "Taika.Database\Taika.Database.sqlproj", "{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
