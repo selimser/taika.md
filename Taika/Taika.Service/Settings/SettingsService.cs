@@ -1,85 +1,46 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Taika.Abstractions.Repository;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Taika.Abstractions.Settings;
+using Taika.Repository.Settings;
 
 namespace Taika.Service.Settings
 {
     public class SettingsService : ISettingsService
     {
-        private readonly IConfiguration _configuration;
-        public TaikaSettings TaikaSettings { get; set; }
+        private readonly ISettingsRepository _settingsRepository;
 
-        public SettingsService(IOptions<TaikaSettings> taikaSettings, IConfiguration configuration)
+        public SettingsService(ISettingsRepository settingsRepository)
         {
-            TaikaSettings = taikaSettings.Value;
-            _configuration = configuration;
+            _settingsRepository = settingsRepository;
         }
 
-        public (RepoData, bool) AddRepository(RepoData repoData)
+        public async Task<string> GetTheme()
         {
-            TaikaSettings.Repositories.Add(repoData);
-            return (repoData, true);
+            var result = await _settingsRepository.GetByIdAsync(SettingKeys.Theme);
+            return result.Value;
         }
 
-        public (Guid, bool) RemoveRepository(Guid id)
+        public async Task<bool> SetTheme(string value)
         {
-            TaikaSettings.Repositories.RemoveAll(p => p.Id == id);
-            return (id, true);
+            try
+            {
+                var result = await _settingsRepository.AddOrUpdateAsync(new TaikaSetting
+                {
+                    Key = SettingKeys.Theme,
+                    Value = value,
+                    CreatedOn = DateTime.UtcNow
+                });
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+
+                //log the error.
+                return false;
+            }
         }
-
-        public RepoData GetRepository(Guid id)
-        {
-            return TaikaSettings.Repositories.First(p => p.Id == id);
-        }
-
-
-        public IEnumerable<RepoData> GetRepositoryList()
-        {
-            return TaikaSettings.Repositories;
-        }
-
-        public string GetTheme()
-        {
-            return TaikaSettings.Theme;
-        }
-
-        public bool SetTheme(string value)
-        {
-            _configuration["Taika:Theme"] = value;
-            
-            var a = TaikaSettings.Theme;
-            //TaikaSettings.Theme = value;
-            //PersistSettings();
-            return true; //for now.
-        }
-
-
-        private void PersistSettings()
-        {
-            
-            
-        }
-
-
-
-
-
-        //public async Task<bool> UpdateFavIcon(MemoryStream streamData)
-        //{
-        //    return await _storageService.WriteToFile(streamData, TaikaDirectory.FavIconPath, true);
-        //}
-
-        //public async Task<bool> UpdateLogo(MemoryStream streamData)
-        //{
-        //    return await _storageService.WriteToFile(streamData, TaikaDirectory.LogoPath, true);
-        //}
-
-
-
-
     }
 }

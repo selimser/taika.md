@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Taika.Abstractions.Settings;
+using Taika.Repository.Settings;
 using Taika.Service.Settings;
 using Taika.Service.Storage;
 
@@ -26,10 +27,13 @@ namespace Taika
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.Configure<TaikaSettings>(Configuration.GetSection("Taika"));
+            //services.Configure<TaikaSetting>(Configuration.GetSection("Taika"));
 
-            services.AddSingleton<IStorageService, StorageService>();
+
             services.AddSingleton<ISettingsService, SettingsService>();
+            services.AddSingleton<ISettingsRepository, SettingsRepository>();
+            //services.AddSingleton<IStorageService, StorageService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

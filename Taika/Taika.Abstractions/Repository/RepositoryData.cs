@@ -2,10 +2,11 @@
 
 namespace Taika.Abstractions.Repository
 {
-    public class RepoData
+    public class RepositoryData
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string GitUrl { get; set; }
+        public string Url { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

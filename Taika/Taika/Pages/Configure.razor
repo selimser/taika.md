@@ -40,41 +40,15 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
-        Test();
+        await Test();
     }
 
-    public void Test()
+    public async Task Test()
     {
-        var currentTheme = SettingsService.GetTheme();
-        SettingsService.SetTheme("light");
-        var newTheme = SettingsService.GetTheme();
+        var currentTheme = await SettingsService.GetTheme();
+        await SettingsService.SetTheme("light");
+        var newTheme = await SettingsService.GetTheme();
 
-        @*var repoList = SettingsService.GetRepositoryList();
-        
-        var addResponse1 = SettingsService.AddRepository(new Abstractions.Repository.RepoData
-        {
-            Id = Guid.NewGuid(),
-            Name = "Test Repo",
-            GitUrl = "https://"
-        });
-        
-
-        var secondRepoList = SettingsService.GetRepositoryList();
-
-        var addResponse2 = SettingsService.AddRepository(new Abstractions.Repository.RepoData
-        {
-            Id = Guid.NewGuid(),
-            Name = "Test Repo 2",
-            GitUrl = "ssh://"
-        });
-
-        var thirdRepoList = SettingsService.GetRepositoryList();
-        var fetch1 = SettingsService.GetRepository(addResponse1.Item1.Id);
-        var fetch2 = SettingsService.GetRepository(addResponse2.Item1.Id);
-
-        SettingsService.RemoveRepository(addResponse1.Item1.Id);
-        var repoListAfterRemoval = SettingsService.GetRepositoryList();
-        var fetch3 = SettingsService.GetRepository(addResponse1.Item1.Id);
-        var fetch4 = SettingsService.GetRepository(addResponse2.Item1.Id);*@
+       
     }
 }
