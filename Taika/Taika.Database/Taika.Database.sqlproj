@@ -65,19 +65,13 @@
     <Folder Include="Tables" />
     <Folder Include="Stored Procedures" />
     <Folder Include="Post-Deploy" />
-    <Folder Include="Pre-Deploy" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\ApplicationSettings.sql" />
     <Build Include="Tables\Repositories.sql" />
+    <PostDeploy Include="Post-Deploy\1_InsertAppSettings.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Taika.Database.publish.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="Post-Deploy\Script.PostDeployment1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PreDeploy Include="Pre-Deploy\Script.PreDeployment1.sql" />
   </ItemGroup>
 </Project>
