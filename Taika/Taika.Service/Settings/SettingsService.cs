@@ -2,22 +2,22 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Taika.Abstractions.Settings;
-using Taika.Repository.Settings;
+using Taika.Repository.Shared;
 
 namespace Taika.Service.Settings
 {
     public class SettingsService : ISettingsService
     {
-        private readonly ISettingsRepository _settingsRepository;
+        private readonly ITaikaUnit _taikaUnit;
 
-        public SettingsService(ISettingsRepository settingsRepository)
+        public SettingsService(ITaikaUnit taikaUnit)
         {
-            _settingsRepository = settingsRepository;
+            _taikaUnit = taikaUnit;
         }
 
         public async Task<string> GetTheme()
         {
-            var result = await _settingsRepository.GetByIdAsync(SettingKeys.Theme);
+            var result = await _taikaUnit.Settings.GetByIdAsync(SettingKeys.Theme);
             return result.Value;
         }
 
@@ -25,7 +25,7 @@ namespace Taika.Service.Settings
         {
             try
             {
-                var result = await _settingsRepository.AddOrUpdateAsync(new TaikaSetting
+                var result = await _taikaUnit.Settings.AddOrUpdateAsync(new TaikaSetting
                 {
                     Key = SettingKeys.Theme,
                     Value = value,

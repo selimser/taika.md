@@ -5,7 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Taika.Abstractions.Settings;
+using Taika.Repository.Repo;
 using Taika.Repository.Settings;
+using Taika.Repository.Shared;
+using Taika.Service.Repository;
+using Taika.Service.RepositoryService.Repository;
 using Taika.Service.Settings;
 using Taika.Service.Storage;
 
@@ -13,30 +17,27 @@ namespace Taika
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            //services.Configure<TaikaSetting>(Configuration.GetSection("Taika"));
-
-
             services.AddSingleton<ISettingsService, SettingsService>();
             services.AddSingleton<ISettingsRepository, SettingsRepository>();
-            //services.AddSingleton<IStorageService, StorageService>();
-            
+
+            services.AddSingleton<IRepoService, RepoService>();
+            services.AddSingleton<IRepoRepository, RepoRepository>();
+
+            services.AddSingleton<ITaikaUnit, TaikaUnit>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -46,7 +47,6 @@ namespace Taika
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
