@@ -1,5 +1,4 @@
-﻿SET NOCOUNT ON
-
+﻿PRINT 'Inserting default application settings'
 DECLARE @DefaultAppSettings TABLE
 (
     [Key] VARCHAR(30),
@@ -22,7 +21,7 @@ BEGIN TRY
         ON APS.[Key] = DAS.[Key]
         WHERE APS.[Key] IS NULL
 
-		DECLARE @RecordCount SMALLINT = @@ROWCOUNT
+		SET @RecordCount = @@ROWCOUNT
 
 		PRINT 'Default application settings creation completed!'
     
@@ -39,11 +38,9 @@ END TRY
 BEGIN CATCH
 	ROLLBACK TRANSACTION
 
-    DECLARE @ErrorMessage VARCHAR(300) 
-        = CONCAT('Error inserting default application settings', ERROR_MESSAGE())
+    SET @ErrorMessage = CONCAT('Error inserting default application settings', ERROR_MESSAGE())
 
     PRINT 'ERROR!!!'
     RAISERROR(@ErrorMessage, 5, 100)
 END CATCH
-
-SET NOCOUNT OFF
+PRINT 'Inserting missing default application settings completed!'

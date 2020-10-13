@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[LogEntry]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
+	[LoggerId] INT NOT NULL,
+	[SeverityId] INT NOT NULL,
+	[TimeStamp] DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
+	[Message] VARCHAR(1000) NULL,
+)

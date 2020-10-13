@@ -1,0 +1,27 @@
+﻿SET ANSI_NULLS, ANSI_PADDING, ANSI_WARNINGS ON
+SET ARITHABORT, CONCAT_NULL_YIELDS_NULL, QUOTED_IDENTIFIER ON
+SET NOCOUNT ON
+GO
+
+PRINT 'Going into single user mode...'
+ALTER DATABASE TaikaMd
+SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+GO
+PRINT 'Db is in SINGLE_USER mode!!!'
+
+DECLARE @ErrorMessage VARCHAR(300), @RecordCount SMALLINT = 0
+
+:r 01-DefaultAppSettings.sql
+:r 02-Loggers.sql
+:r 03-SeverityMeta.sql
+GO
+
+
+PRINT 'Going back to multi user mode...'
+ALTER DATABASE TaikaMd
+SET MULTI_USER WITH ROLLBACK IMMEDIATE
+GO
+PRINT 'Db is in MULTI_USER mode!!!'
+
+
+SET NOCOUNT OFF

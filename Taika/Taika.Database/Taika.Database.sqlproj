@@ -69,13 +69,19 @@
   <ItemGroup>
     <Build Include="Tables\ApplicationSettings.sql" />
     <Build Include="Tables\Repositories.sql" />
-    <PostDeploy Include="Post-Deploy\1_InsertAppSettings.sql" />
     <Build Include="Stored Procedures\AddRepository.sql" />
     <Build Include="Stored Procedures\AddSetting.sql" />
     <Build Include="Stored Procedures\GetRepository.sql" />
     <Build Include="Stored Procedures\GetSetting.sql" />
+    <Build Include="Stored Procedures\AddOrUpdateSetting.sql" />
+    <Build Include="Tables\LogEntry.sql" />
+    <Build Include="Tables\Loggers.sql" />
+    <Build Include="Tables\LogSeverity.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Taika.Database.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Post-Deploy\InsertDefaults.sql" />
   </ItemGroup>
 </Project>
