@@ -8,5 +8,6 @@ namespace Taika.Repository.Settings
         Task<TaikaSetting> GetByIdAsync(string key);
         Task<int> DeleteAsync(string key);
         Task<int> AddOrUpdateAsync(TaikaSetting setting);
+        Task<int> RefreshAsync(TaikaSetting setting);
     }
 }

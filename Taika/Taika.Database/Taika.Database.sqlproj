@@ -77,11 +77,12 @@
     <Build Include="Tables\LogEntry.sql" />
     <Build Include="Tables\Loggers.sql" />
     <Build Include="Tables\LogSeverity.sql" />
+    <PostDeploy Include="Post-Deploy\00-Chain.sql" />
+    <None Include="Post-Deploy\01-DefaultAppSettings.sql" />
+    <None Include="Post-Deploy\02-Loggers.sql" />
+    <None Include="Post-Deploy\03-SeverityMeta.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Taika.Database.publish.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="Post-Deploy\InsertDefaults.sql" />
   </ItemGroup>
 </Project>

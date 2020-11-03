@@ -134,10 +134,30 @@ namespace Taika.Repository.Settings
                 var spParams = new DynamicParameters();
                 spParams.Add("@Key", setting.Key);
                 spParams.Add("@Value", setting.Value);
+                spParams.Add("@CreatedOn", DateTime.UtcNow);
 
                 return await connection.ExecuteAsync
                 (
                     sql: StoredProcedures.AddOrUpdateSetting,
+                    commandType: CommandType.StoredProcedure,
+                    param: spParams,
+                    commandTimeout: 10
+                );
+            }
+        }
+
+        public async Task<int> RefreshAsync(TaikaSetting setting)
+        {
+            using (var connection = await SqlFactory.Create(_configuration.GetConnectionString(DbConnectionStringName)))
+            {
+                var spParams = new DynamicParameters();
+                spParams.Add("@Key", setting.Key);
+                spParams.Add("@Value", setting.Value);
+                spParams.Add("@CreatedOn", DateTime.UtcNow);
+
+                return await connection.ExecuteAsync
+                (
+                    sql: StoredProcedures.RefreshSetting,
                     commandType: CommandType.StoredProcedure,
                     param: spParams,
                     commandTimeout: 10

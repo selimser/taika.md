@@ -1,10 +1,182 @@
-﻿<table class="table table-hover">
-  <tbody>
-    <tr>
-      <td>Logo</td>
-      <td>
-          <InputFile multiple />
-      </td>
-    </tr>
-  </tbody>
+﻿@using System.Threading
+@using Models;
+@using Taika.Service.Settings;
+@using Taika.Core.Shared;
+
+@implements IDisposable
+@inject IStorageService StorageService;
+@inject ISettingsService SettingsService;
+@inject IJSRuntime JSRuntime;
+
+<table class="table table-hover">
+    <thead>
+        <td>&zwnj;</td>
+        <td>&zwnj;</td>
+        <td>Changed On</td>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Logo</td>
+            <td>
+                <InputFile OnChange="@((args) => HandleInputFileChange(args, 'L'))" />
+                <button type="button"
+class="btn btn-info @UploadLogoButtonVisibility"
+                @onclick="async () => await UpdateLogo()"
+disabled="@UploadLogoButtonState">
+                    <i class="fas fa-upload" /> Upload
+                </button>
+            </td>
+            <td>
+                asfaf
+            </td>
+        </tr>
+        <tr>
+            <td>FavIcon</td>
+            <td>
+                <InputFile OnChange="@((args) => HandleInputFileChange(args, 'F'))" />
+
+                <button type="button"
+class="btn btn-info @UploadFavIconButtonVisibility"
+                @onclick="async () => await UpdateFavIcon()"
+disabled="@UploadFavIconButtonState">
+                    <i class="fas fa-upload" /> Upload
+                </button>
+            </td>
+            <td>
+                asfaf
+            </td>
+        </tr>
+    </tbody>
 </table>
+
+@code {
+    private CancellationTokenSource _token;
+    private EditContext _context;
+    private UploadContext _uploadContext;
+
+    private string
+        ToastTitle,
+        ToastBody,
+        ToastAlertLevel;
+
+    private string
+        UploadLogoButtonVisibility = "d-none",
+        UploadFavIconButtonVisibility = "d-none";
+
+    private string
+        UploadLogoButtonIcon = "upload",
+        UploadLogoButtonText = "Upload",
+        UploadFavIconButtonIcon = "upload",
+        UploadFavIconButtonText = "Upload";
+
+    private string
+        UploadLogoButtonState = string.Empty,
+        UploadFavIconButtonState = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        _token = new CancellationTokenSource();
+        _uploadContext = new UploadContext();
+        _context = new EditContext(_uploadContext);
+    }
+
+    #region Form UI Operations
+
+    private void HandleInputFileChange(InputFileChangeEventArgs eventArgs, char targetInput)
+    {
+        _uploadContext.File = eventArgs.File;
+        _context.NotifyFieldChanged(FieldIdentifier.Create(() => _uploadContext.File));
+
+        SetUploadButtonState(targetInput, false);
+        UpdateButton(targetInput, isDisabled: false);
+    }
+
+    private void SetUploadButtonState(char targetButton, bool hideButton = false)
+    {
+        if (targetButton == 'L')
+        {
+            if (hideButton)
+            {
+                UploadLogoButtonVisibility = "d-none";
+                return;
+            }
+
+            UploadLogoButtonVisibility = string.Empty;
+        }
+        else if (targetButton == 'F')
+        {
+            if (hideButton)
+            {
+                UploadFavIconButtonVisibility = "d-none";
+                return;
+            }
+
+            UploadFavIconButtonVisibility = string.Empty;
+        }
+    }
+
+    private void UpdateButton(char targetButton, string textContent = "", string icon = "", bool isDisabled = false)
+    {
+        if (targetButton == 'L')
+        {
+            if (!string.IsNullOrWhiteSpace(textContent))
+                UploadLogoButtonText = textContent;
+
+            if (!string.IsNullOrWhiteSpace(icon))
+                UploadLogoButtonIcon = icon;
+
+
+            if (isDisabled)
+            {
+                UploadLogoButtonState = "true";
+            }
+            else
+            {
+                UploadLogoButtonState = "false";
+            }
+        }
+        else if (targetButton == 'F')
+        {
+            UploadFavIconButtonIcon = icon;
+            UploadFavIconButtonText = textContent;
+
+            if (isDisabled)
+            {
+                UploadFavIconButtonState = "true";
+            }
+            else
+            {
+                UploadFavIconButtonState = "false";
+            }
+        }
+    }
+
+    #endregion
+
+    private async Task UpdateLogo()
+    {
+        UpdateButton('L', "Uploading", "sync", true);
+
+        using (var stream = _uploadContext.File.OpenReadStream(maxAllowedSize: 512000)) //make it configurable in appsettings.
+        {
+            await StorageService.SaveLogo(stream);
+            _ = SettingsService.Set(SettingKeys.Logo, TaikaDirectory.LogoPath);
+        }
+    }
+
+    private async Task UpdateFavIcon()
+    {
+        UpdateButton('F', "Uploading", "sync", true);
+
+        using (var stream = _uploadContext.File.OpenReadStream(maxAllowedSize: 512000)) //make it configurable in appsettings.
+        {
+            await StorageService.SaveLogo(stream);
+            _ = SettingsService.Set(SettingKeys.FavIcon, TaikaDirectory.FavIconPath);
+        }
+    }
+
+    public void Dispose()
+    {
+        _token.Cancel();
+    }
+}

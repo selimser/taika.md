@@ -40,15 +40,8 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
-        await Test();
+     
     }
 
-    public async Task Test()
-    {
-        var currentTheme = await SettingsService.GetTheme();
-        await SettingsService.SetTheme("light");
-        var newTheme = await SettingsService.GetTheme();
-
-       
-    }
+  
 }

@@ -14,5 +14,6 @@
         public const string GetAllSettings = "[dbo].[GetAllSettings]";
         public const string UpdateSetting = "[dbo].[UpdateSetting]";
         public const string AddOrUpdateSetting = "[dbo].[AddOrUpdateSetting]";
+        public const string RefreshSetting = "[dbo].[RefreshSetting]";
     }
 }

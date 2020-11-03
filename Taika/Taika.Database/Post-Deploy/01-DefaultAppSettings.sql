@@ -7,7 +7,9 @@ DECLARE @DefaultAppSettings TABLE
 
 INSERT INTO @DefaultAppSettings([Key], [Value])
 VALUES
-    ('Theme', 'default')
+    ('Theme', 'default'),
+    ('Logo', 'Uploads/Logo.png'),
+    ('FavIcon', 'wwwroot/favicon.ico')
 
 BEGIN TRY
     PRINT 'Inserting missing default application settings'

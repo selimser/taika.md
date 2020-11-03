@@ -1,56 +1,81 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
+using Taika.Abstractions.Context;
+using Taika.Abstractions.Storage;
+using Taika.Core.Shared;
+using Taika.Repository.Storage;
 
 namespace Taika.Service.Storage
 {
     public class StorageService : IStorageService
     {
-        public async Task<bool> WriteToFile(MemoryStream streamData, string targetFile, bool deleteExisting = false)
+        private readonly IStorageRepository _storageRepository;
+
+        public StorageService(IStorageRepository storageRepository)
+        {
+            _storageRepository = storageRepository;
+        }
+
+        public async Task<SaveLogoResult> SaveLogo(Stream streamData)
         {
             try
             {
-                if (deleteExisting)
-                {
-                    File.Delete(targetFile);
-                }
+                var writeResult =
+                    await _storageRepository.WriteToFile
+                    (
+                        streamData: streamData,
+                        targetFile: TaikaDirectory.LogoPath,
+                        deleteExisting: true
+                    );
 
-                using (var fStream = new FileStream(targetFile, FileMode.Create, FileAccess.Write))
-                {
-                    var streamBytes = new byte[streamData.Length];
-                    await streamData.ReadAsync(streamBytes, 0, (int)streamData.Length);
-                    await fStream.WriteAsync(streamBytes, 0, streamBytes.Length);
-                    streamData.Close();
-                }
-
-                return true;
+                return new SaveLogoResult { FilePath = TaikaDirectory.LogoPath };
             }
             catch (Exception ex)
             {
-                //log the error.
-                return false;
-            }
-        }
-
-        public async Task<MemoryStream> ReadStreamFromFile(string targetFile)
-        {
-            using (var mStream = new MemoryStream())
-            {
-                using (var fStream = new FileStream(targetFile, FileMode.Open, FileAccess.Read))
+                return new SaveLogoResult
                 {
-                    var streamBytes = new byte[fStream.Length];
-                    await fStream.ReadAsync(streamBytes, 0, (int)fStream.Length);
-                    await mStream.WriteAsync(streamBytes, 0, (int)fStream.Length);
-                }
-
-                return mStream;
+                    Error = new Error
+                    {
+                        Code = -1, //temp
+                        Message = ex.Message,
+                        ExceptionData = ex
+                    }
+                };
             }
         }
 
-        public string ReadTextFromFile(string targetFile)
+        public async Task<SaveFavIconResult> SaveFavIcon(Stream streamData)
         {
-            return File.ReadAllText(targetFile, Encoding.UTF8);
+            try
+            {
+                var writeResult =
+                    await _storageRepository.WriteToFile
+                    (
+                        streamData: streamData,
+                        targetFile: TaikaDirectory.FavIconPath,
+                        deleteExisting: true
+                    );
+
+                return new SaveFavIconResult { FilePath = TaikaDirectory.FavIconPath };
+            }
+            catch (Exception ex)
+            {
+                return new SaveFavIconResult
+                {
+                    Error = new Error
+                    {
+                        Code = -1, //temp
+                        Message = ex.Message,
+                        ExceptionData = ex
+                    }
+                };
+            }
+        }
+
+        public Task<SaveFileResult> SaveFile(string fileName, Stream streamData)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

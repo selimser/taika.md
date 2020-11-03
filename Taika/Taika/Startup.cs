@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using Taika.Abstractions.Settings;
 using Taika.Repository.Repo;
 using Taika.Repository.Settings;
 using Taika.Repository.Shared;
+using Taika.Repository.Storage;
 using Taika.Service.Repository;
 using Taika.Service.RepositoryService.Repository;
 using Taika.Service.Settings;
@@ -34,6 +33,9 @@ namespace Taika
 
             services.AddSingleton<IRepoService, RepoService>();
             services.AddSingleton<IRepoRepository, RepoRepository>();
+
+            services.AddSingleton<IStorageService, StorageService>();
+            services.AddSingleton<IStorageRepository, StorageRepository>();
 
             services.AddSingleton<ITaikaUnit, TaikaUnit>();
         }
