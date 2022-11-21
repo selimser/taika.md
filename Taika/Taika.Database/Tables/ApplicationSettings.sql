@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[ApplicationSettings]
+(
+	[Key] VARCHAR(30) NOT NULL PRIMARY KEY,
+	[Value] VARCHAR(100) NOT NULL,
+	[CreatedOn] DATETIME2 NOT NULL DEFAULT GETDATE()
+)

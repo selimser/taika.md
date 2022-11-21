@@ -1,0 +1,24 @@
+﻿<div class="alert alert-@AlertLevel alert-dismissible fade show" role="alert">
+    <strong>@HeaderMessage</strong> @BodyText
+
+    @if (Dismissable)
+    {
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string HeaderMessage { get; set; }
+
+    [Parameter]
+    public string BodyText { get; set; }
+
+    [Parameter]
+    public bool Dismissable { get; set; }
+
+    [Parameter]
+    public string AlertLevel { get; set; }
+}

@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taika", "Taika\Taika.csproj", "{E2C4846A-D717-481D-A6BB-6CE000DB75FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika", "Taika\Taika.csproj", "{E2C4846A-D717-481D-A6BB-6CE000DB75FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taika.Service", "Taika.Service\Taika.Service.csproj", "{1A956C29-9C8E-48B8-A4B1-1CE82DE10A35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.Service", "Taika.Service\Taika.Service.csproj", "{1A956C29-9C8E-48B8-A4B1-1CE82DE10A35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taika.Repository", "Taika.Repository\Taika.Repository.csproj", "{11116121-97E0-4AA7-BCA7-80D0ED9E8A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.Repository", "Taika.Repository\Taika.Repository.csproj", "{11116121-97E0-4AA7-BCA7-80D0ED9E8A94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taika.Abstractions", "Taika.Abstractions\Taika.Abstractions.csproj", "{09784B8D-972C-41E7-8ED9-C9C60F7BED9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.Abstractions", "Taika.Abstractions\Taika.Abstractions.csproj", "{09784B8D-972C-41E7-8ED9-C9C60F7BED9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.Core", "Taika.Core\Taika.Core.csproj", "{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Taika.Database", "Taika.Database\Taika.Database.sqlproj", "{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taika.External", "Taika.External\Taika.External.csproj", "{62FE860D-A942-482B-9A4C-CACB199BC50C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,20 @@ Global
 		{09784B8D-972C-41E7-8ED9-C9C60F7BED9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09784B8D-972C-41E7-8ED9-C9C60F7BED9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09784B8D-972C-41E7-8ED9-C9C60F7BED9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99EA6F9A-EFBC-4046-AAC4-AA013DBE0065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B357382B-AF86-4E42-A9E3-80E4A8A2E5FE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{62FE860D-A942-482B-9A4C-CACB199BC50C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62FE860D-A942-482B-9A4C-CACB199BC50C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62FE860D-A942-482B-9A4C-CACB199BC50C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62FE860D-A942-482B-9A4C-CACB199BC50C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
